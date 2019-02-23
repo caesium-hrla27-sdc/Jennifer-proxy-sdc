@@ -9,9 +9,9 @@ const app = express();
 const PORT = 3000;
 
 const productDetailsServer = 'http://localhost:3002';
-const exploreServer = 'http://localhost:3004';
-const similarServer = 'http://localhost:3005';
-const reviewsServer = 'http://localhost:3003';
+const ratingsServer = 'http://localhost:3003';
+const similarServer = 'http://localhost:3004';
+const exploreServer = 'http://localhost:3005';
 
 app.use(cookieParser());
 app.use(parser.json());
@@ -19,36 +19,59 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cors());
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
   let id = Math.floor(Math.random() * 100);
   res.clearCookie('id');
-  res.cookie({ id });
+  res.cookie('id', id);
   res.sendFile(path.resolve(__dirname, '../public/index.html'));
 });
 
-app.use('/productDetails', (req, res) => {
+app.get('/productDetails', (req, res) => {
   console.log(req.cookies);
-  axios.get(productDetailsServer + '/' + req.cookies.id).then(({ data }) => {
-    res.json(data);
-  });
+  axios
+    .get(productDetailsServer + '/productDetails/' + req.cookies.id)
+    .then(({ data }) => {
+      res.json(data);
+    })
+    .catch(() => res.status(404).end());
 });
 
-app.use('/explore', (req, res) => {
-  axios.get(exploreServer + '/' + req.cookies.id).then(({ data }) => {
-    res.json(data);
-  });
+app.get('/explores', (req, res) => {
+  axios
+    .get(exploreServer + '/explores/' + req.cookies.id)
+    .then(({ data }) => {
+      res.json(data);
+    })
+    .catch(() => res.status(404).end());
 });
 
-app.use('/similar', (req, res) => {
-  axios.get(similarServer + '/' + req.cookies.id).then(({ data }) => {
-    res.json(data);
-  });
+app.get('/similar', (req, res) => {
+  axios
+    .get(similarServer + '/similar/' + req.cookies.id)
+    .then(({ data }) => {
+      res.json(data);
+    })
+    .catch(() => res.status(404).end());
 });
 
-app.use('/reviews', (req, res) => {
-  axios.get(reviewsServer + '/' + req.cookies.id).then(({ data }) => {
-    res.json(data);
-  });
+app.get('/like', (req, res) => {
+  axios
+    .get(similarServer + '/like/' + req.cookies.id)
+    .then(({ data }) => {
+      res.json(data);
+    })
+    .catch(() => res.status(404).end());
 });
+
+app.get('/ratings', (req, res) => {
+  axios
+    .get(ratingsServer + '/ratings/' + req.cookies.id)
+    .then(({ data }) => {
+      res.json(data);
+    })
+    .catch(() => res.status(404).end());
+});
+
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.listen(PORT, () => console.log('server listening on PORT ' + PORT));
