@@ -2,26 +2,8 @@ html {
   box-sizing: border-box;
   font-family: 'Helvetica Neue';
 }
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  margin: 0;
-  padding: 0;
-  background-color: transparent;
-  color: inherit;
-  font: inherit;
-  text-transform: inherit;
-  letter-spacing: inherit;
-  text-align: inherit;
-  text-decoration: none;
-  list-style: none;
-  min-width: 0;
-}
 
-body {
+#css-body {
   font-family: 'helvetica neue', helvetica, arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
@@ -31,8 +13,19 @@ body {
   overflow-y: auto;
 }
 
-#container {
+#css-container {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+}
+
+#css-footer {
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  flex: none;
+  margin-top: 48px;
+  width: 100%;
+  margin-bottom: -8px;
 }
