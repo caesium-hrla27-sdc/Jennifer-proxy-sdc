@@ -21,14 +21,12 @@ app.use(cors());
 
 app.get('/', (req, res) => {
   let id = Math.floor(Math.random() * 100);
-  console.log(res.cookies);
   res.clearCookie('id');
   res.cookie('id', id);
   res.sendFile(path.resolve(__dirname, '../public/index.html'));
 });
 
 app.get('/productDetails', (req, res) => {
-  console.log(req.cookies);
   axios
     .get(productDetailsServer + '/productDetails/' + req.cookies.id)
     .then(({ data }) => {
