@@ -11,7 +11,7 @@ const PORT = 80;
 const productDetailsServer =
   'http://ec2-18-222-132-127.us-east-2.compute.amazonaws.com:3002';
 const ratingsServer = 'http://localhost:3003';
-const similarServer = 'http://ec2-18-212-94-82.compute-1.amazonaws.com:3004/';
+const similarServer = 'http://ec2-18-212-94-82.compute-1.amazonaws.com:3004';
 const exploreServer = 'http://localhost:3005';
 
 app.use(cookieParser());
