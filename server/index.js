@@ -9,7 +9,7 @@ const app = express();
 const PORT = 80;
 
 const productDetailsServer =
-  'http://ec2-18-222-132-127.us-east-2.compute.amazonaws.com:3002';
+  'ec2-18-216-119-172.us-east-2.compute.amazonaws.com:3002';
 const ratingsServer =
   'http://ec2-18-217-232-247.us-east-2.compute.amazonaws.com:3003';
 const similarServer = 'http://ec2-18-212-94-82.compute-1.amazonaws.com:3004';
